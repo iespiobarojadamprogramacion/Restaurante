@@ -1,5 +1,5 @@
-package modelo;
-public class reservas {
+package restaurante.modelo;
+public class Reservas {
 	 private static int contador = 1; 
     private int idReserva;
     private String fechaReserva;
@@ -7,7 +7,7 @@ public class reservas {
     private int comensales;
     private EstadoReservas estado;
 
-    public reservas(String fechaReserva, String horaReserva, int comensales, EstadoReservas estado) {
+    public Reservas(String fechaReserva, String horaReserva, int comensales, EstadoReservas estado) {
     	this.idReserva = contador++; 
         this.fechaReserva = fechaReserva;
         this.horaReserva = horaReserva;
