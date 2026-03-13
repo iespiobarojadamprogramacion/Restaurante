@@ -8,6 +8,7 @@ public class Principal {
 		System.out.println("Soy Daniel Torres");
     System.out.println("Soy Fernando");
     System.out.println("Soy Brian");
+    	System.out.println("Soy Katterine");
 	}
 
 }
