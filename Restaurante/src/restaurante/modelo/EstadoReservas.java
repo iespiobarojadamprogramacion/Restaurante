@@ -1,4 +1,4 @@
-package modelo;
+package restaurante.modelo;
 
 public enum EstadoReservas {
 	Pendiente ,

@@ -1,13 +1,13 @@
-package modelo;
+package restaurante.modelo;
 
-public class clientes {
+public class Clientes {
     private static int contador = 1; 
     private int idCliente;
     private String nombre;
     private String telefono;
     private String correo;
 
-    public clientes(String nombre, String telefono, String correo) {
+    public Clientes(String nombre, String telefono, String correo) {
         this.idCliente = contador++; 
         this.nombre= nombre;
         this.telefono = telefono;
