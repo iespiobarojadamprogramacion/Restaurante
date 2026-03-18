@@ -1,14 +1,18 @@
 package restaurante.modelo;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class SistemaGestion  {
 	
 //ATRIBUTOS
 	//aqui guardamos todos los datos del sistema
+	//PRIMERA FASE
 	private ArrayList<Clientes> clientes;
-	private ArrayList<Mesa> mesas;
 	private ArrayList<Reservas> reservas;
+	private ArrayList<Mesa> mesas;
+	
+	//SEGUNDA FASE
 	private ArrayList<Pedido> pedidos;
 	private ArrayList<Factura> facturas;
 	
@@ -16,8 +20,8 @@ public class SistemaGestion  {
 	//el constructor inicializa las listas, esto sirve para que las listas empiecen vacias
 	public SistemaGestion() {
 		clientes = new ArrayList<>();
-		mesas = new ArrayList<>();
 		reservas = new ArrayList<>();
+		mesas = new ArrayList<>();
 		pedidos = new ArrayList<>();
 		facturas = new ArrayList<>();
 	}
@@ -26,46 +30,91 @@ public class SistemaGestion  {
 	//sirve para mostrar las mesas libres
 	public void listarMesasDisponibles() {
 		for(Mesa m: mesas) {
-			if(m.estaDisponible()) {
-				System.out.println(m);
-			}
+			//TODO:
+			//if(m.estaDisponible()) {
+			//	System.out.println(m);
+			//}
 		}
 	}
 	
-	public void buscarMesa(int idMesa) {}
-	
-	//guarda el cliente en la lista
-	public void registrarCliente(Cliente clientes) {
-		Clientes.add(cliente);
+	public void buscarMesa(int idMesa) {
+		//TODO:
 	}
 	
-	//busca un cliente por su id
-	public void buscarCliente(int idCliente) {
-		for(Cliente c: clientes) {
-			if(c.getIdCliente()== idCliente) {
+	//guarda el cliente en la lista
+	public void registrarCliente(Clientes cliente) {
+		//se añade el cliente a la lista de clientes (arraylist)
+		clientes.add(cliente);
+	}
+	
+	//busca un cliente por su id: Si lo encuentra devuelve cliente, sino devuelve un nulo
+	public Clientes buscarCliente(int idCliente) {
+		for(Clientes c: clientes) {
+			if(c.getICliente()== idCliente) {
 				return c;
 			}
 		}
 		return null;
 	}
 	
-	//guarda una reserva en el sistema
-	public void crearReserva(Reserva reservas) {
-		reservas.add(reserva);
-	}
+	//guarda una reserva en el sistema, los datos lo envía el main
+	public void crearReserva(String fecha, String hora, int comensales) {
+		//Creamos el objeto reserva, los datos llegan del main.
+		//El estado no lo envía el main, lo confirmamos directamente desde el código
+		 Reservas reserva = new Reservas(fecha, hora, comensales, EstadoReservas.Confirmada);
+		 //Añado la reserva a la lista de reservas (arraylist). 
+	     reservas.add(reserva);
 		
-	//añade un pedido	
-	public void crearPedido(Pedido pedido) {
-	    pedidos.add(pedido);
 	}
 	
-	public void cancelarReserva(int idReserva) {}
+    // Buscar reserva por ID
+    public Reservas buscarReserva(int idReserva) {
+        // TODO: Hace falta getter en Reservas (esto aún no está hecho, se tiene que hacer el responsable de reservas)
+        for (Reservas r : reservas) {
+            // if (r.getIdReserva() == idReserva)
+        }
+        return null;
+    }
+    
+    // Cancelar reserva
+    public void cancelarReserva(int idReserva) {
+        // TODO: Falta hacer el getter y el metodo cancelar en reservas (esto aún no está hecho, se tiene que hacer el responsable de reservas)
+        for (Reservas r : reservas) {
+            // if (r.getIdReserva() == idReserva) {
+            //     r.cancelar();
+            // }
+        }
+    }
+    
+    // Confirmar reserva
+    public void confirmarReserva(int idReserva) {
+        // TODO: Falta hacer el getter y el metodo confirmar en reservas (esto aún no está hecho, se tiene que hacer el responsable de reservas)
+        for (Reservas r : reservas) {
+            // if (r.getIdReserva() == idReserva) {
+            //     r.confirmar();
+            // }
+        }
+    }
 	
-	public void confirmarReserva(int idReserva) {}
+    
+    // Listar reservas por fecha
+    public void listarReservasPorFecha(String fecha) {
+        for (Reservas r : reservas) {
+            if (r.esParaFecha(fecha)) {
+                System.out.println("Reserva encontrada en fecha: " + fecha);
+            }
+        }
+    }
+    
+    
+    //SEGUNDA FASE
+    
+	//añade un pedido	 D
+	public void crearPedido(Pedido pedido) { pedidos.add(pedido); }	
 	
-	public void crearPedidoSala(Cliente cliente, Mesa mesa) {}
+	public void crearPedidoSala(Clientes cliente, Mesa mesa) {}
 	
-	public void crearPedidoLlevar(Cliente cliente, boolean recogidaEnLocal) {}
+	public void crearPedidoLlevar(Clientes cliente, boolean recogidaEnLocal) {}
 	
 	public void agregarPlatoAPedido(int idPedido,Plato plato, int cantidad) {}
 	
@@ -77,7 +126,7 @@ public class SistemaGestion  {
 	
 	public void buscarFactura(int idFactura) {}
 	
-	}
+	
 	
 	
 }
