@@ -4,8 +4,8 @@ public class PedidoLlevar extends Pedido{
 	private boolean recogidaEnLocal;
 	private String direccionEntrega;
 	
-	public PedidoLlevar (String fechaPedido, boolean recogidaEnLocal, String direccionEntrega) {
-		super(fechaPedido);
+	public PedidoLlevar (String fechaPedido, boolean recogidaEnLocal, String direccionEntrega, Clientes cliente) {
+		super(fechaPedido, cliente);
 		this.recogidaEnLocal = recogidaEnLocal;
 		
 		this.direccionEntrega = recogidaEnLocal == false? direccionEntrega : null; 
