@@ -1,14 +1,17 @@
 package restaurante.modelo;
 
+import java.util.ArrayList;
+
 public class Clientes {
     private static int contador = 1; 
     private int idCliente;
     private String nombre;
     private String telefono;
     private String correo;
+    private ArrayList <Reservas> reservas;
 
     public Clientes(String nombre, String telefono, String correo) {
-        this.idCliente = contador++; 
+        idCliente = contador++; 
         this.nombre= nombre;
         this.telefono = telefono;
         this.correo = correo;

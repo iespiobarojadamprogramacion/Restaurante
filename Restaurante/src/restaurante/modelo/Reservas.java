@@ -6,13 +6,15 @@ public class Reservas {
     private String horaReserva;
     private int comensales;
     private EstadoReservas estado;
+    private Mesa mesa;
 
-    public Reservas(String fechaReserva, String horaReserva, int comensales, EstadoReservas estado) {
-    	this.idReserva = contador++; 
+    public Reservas(String fechaReserva, String horaReserva, int comensales, EstadoReservas estado,Mesa mesa) {
+        idReserva = contador++; 
         this.fechaReserva = fechaReserva;
         this.horaReserva = horaReserva;
         this.comensales = comensales;
         this.estado = estado;
+        this.mesa=mesa;
     }
 
     public void confirmar() {
