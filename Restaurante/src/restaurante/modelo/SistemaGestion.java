@@ -29,21 +29,25 @@ public class SistemaGestion  {
 //METODOS
 	//sirve para mostrar las mesas libres// la lista de mesas
 	public void listarMesasDisponibles() {
-		for(Mesa m: mesas) {
-			//TODO:
-			//if(m.estaDisponible()) {
-			//	System.out.println(m);
-			//}
-		}
+	    for(Mesa m: mesas) {
+	        if(m.estaDisponible()) {
+	            System.out.println("Mesa " + m.getIdentificador() + 
+	                               " - Capacidad: " + m.getCapacidad());
+	        }
+	    }
 	}
 	
-	public Mesa buscarMesa(int comensales) {
+	public Mesa buscarMesa(int comensales, String fecha, String hora) {
 		for(Mesa m: mesas) {
-			if(m.getCapacidad()>= comensales && m.getEstado()== EstadoMesa.libre) {
+			if(m.getCapacidad()>= comensales && m.getEstado()== EstadoMesa.Libre) {
 				return m;
 			}
 		}
 		return null;
+	}
+	
+	public void agregarMesa(Mesa mesa) {
+	    mesas.add(mesa);
 	}
 	
 	//guarda el cliente en la lista
@@ -63,8 +67,8 @@ public class SistemaGestion  {
 	}
 	
 	//guarda una reserva en el sistema, los datos lo envía el main
-	
 	public void crearReserva(Reservas reserva) { 
+	    reserva.getMesa().reservar(); // Es necesario reservar la mesa, es decir cambiar el estado de la mesa
 	     reservas.add(reserva);
 	}
 	
@@ -75,16 +79,6 @@ public class SistemaGestion  {
             // if (r.getIdReserva() == idReserva)
         }
         return null;
-    }
-    
-    // Cancelar reserva
-    public void cancelarReserva(int idReserva) {
-        // TODO: Falta hacer el getter y el metodo cancelar en reservas (esto aún no está hecho, se tiene que hacer el responsable de reservas)
-        for (Reservas r : reservas) {
-            // if (r.getIdReserva() == idReserva) {
-            //     r.cancelar();
-            // }
-        }
     }
     
     // Confirmar reserva
@@ -104,6 +98,16 @@ public class SistemaGestion  {
             if (r.esParaFecha(fecha)) {
                 System.out.println("Reserva encontrada en fecha: " + fecha);
             }
+        }
+    }
+    
+    // Cancelar reserva
+    public void cancelarReserva(int idReserva) {
+        // TODO: Falta hacer el getter y el metodo cancelar en reservas (esto aún no está hecho, se tiene que hacer el responsable de reservas)
+        for (Reservas r : reservas) {
+            // if (r.getIdReserva() == idReserva) {
+            //     r.cancelar();
+            // }
         }
     }
     

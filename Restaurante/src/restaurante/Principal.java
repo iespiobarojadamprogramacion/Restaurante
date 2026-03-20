@@ -12,6 +12,13 @@ public class Principal {
 		
 		boolean cerrar = false;
 		
+		//Dar de alta mesas
+		sistemaGestion.agregarMesa(new Mesa(1, 2));
+		sistemaGestion.agregarMesa(new Mesa(2, 4));
+		sistemaGestion.agregarMesa(new Mesa(3, 4));
+		sistemaGestion.agregarMesa(new Mesa(4, 6));
+		sistemaGestion.agregarMesa(new Mesa(5, 8));
+		
 		//Bucle de menu
 		do {
 			menuPrincipal();
@@ -20,7 +27,7 @@ public class Principal {
 			
 			switch(opcion) {
 			
-			//Rservas
+			//Reservas
 			case 1:
 				System.out.print("Escriba el nombre del cliente: ");
 				String nombre = sc.nextLine();
@@ -58,8 +65,14 @@ public class Principal {
 				if (mesa != null) {
 					
 					//Si todo ha salido bien, podemos crear la reserva sin problemas
-					Reservas reserva = new Reservas(fecha, hora, comensales, mesa, cliente);
+					Reservas reserva = new Reservas(fecha, hora, comensales, EstadoReservas.Confirmada,mesa, cliente);
 					sistemaGestion.crearReserva(reserva);
+					
+					System.out.println("Reserva confirmada");
+					System.out.println("Cliente: " + cliente.obtenerNombre());
+					System.out.println("Fecha: " + fecha);
+					System.out.println("Hora: " + hora);
+					System.out.println("Mesa: " + mesa.getIdentificador());
 				} 
 				
 				//Si no hay mesas disponibles, descartamos la creación de la reserva, no es realista pero por ahora puede servir
@@ -86,7 +99,7 @@ public class Principal {
 	}
 	
 	private static void menuPrincipal() {
-		System.out.println("Benvenuto"
+		System.out.println("Bienvenido al restaurante DAM1"
 				+ "\n 1. Reservas"
 				+ "\n 2. SALIR");
 	}
