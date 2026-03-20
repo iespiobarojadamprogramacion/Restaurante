@@ -52,10 +52,10 @@ public class SistemaGestion  {
 		clientes.add(cliente);
 	}
 	
-	//busca un cliente por su id: Si lo encuentra devuelve cliente, sino devuelve un nulo
-	public Clientes buscarCliente(int idCliente) {
+	//busca un cliente por su nombre: Si lo encuentra devuelve cliente, sino devuelve un nulo
+	public Clientes buscarCliente(String nombre) {
 		for(Clientes c: clientes) {
-			if(c.getICliente()== idCliente) {
+			if(c.obtenerNombre().equals(nombre)) {
 				return c;
 			}
 		}
