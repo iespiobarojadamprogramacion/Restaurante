@@ -27,7 +27,7 @@ public class SistemaGestion  {
 	}
 	
 //METODOS
-	//sirve para mostrar las mesas libres
+	//sirve para mostrar las mesas libres// la lista de mesas
 	public void listarMesasDisponibles() {
 		for(Mesa m: mesas) {
 			//TODO:
@@ -37,8 +37,13 @@ public class SistemaGestion  {
 		}
 	}
 	
-	public void buscarMesa(int idMesa) {
-		//TODO:
+	public Mesa buscarMesa(int comensales) {
+		for(Mesa m: mesas) {
+			if(m.getCapacidad()>= comensales && m.getEstado()== EstadoMesa.libre) {
+				return m;
+			}
+		}
+		return null;
 	}
 	
 	//guarda el cliente en la lista
@@ -58,13 +63,9 @@ public class SistemaGestion  {
 	}
 	
 	//guarda una reserva en el sistema, los datos lo envía el main
-	public void crearReserva(String fecha, String hora, int comensales) {
-		//Creamos el objeto reserva, los datos llegan del main.
-		//El estado no lo envía el main, lo confirmamos directamente desde el código
-		 Reservas reserva = new Reservas(fecha, hora, comensales, EstadoReservas.Confirmada);
-		 //Añado la reserva a la lista de reservas (arraylist). 
+	
+	public void crearReserva(Reservas reserva) { 
 	     reservas.add(reserva);
-		
 	}
 	
     // Buscar reserva por ID
@@ -109,7 +110,7 @@ public class SistemaGestion  {
     
     //SEGUNDA FASE
     
-	//añade un pedido	 D
+	//añade un pedido
 	public void crearPedido(Pedido pedido) { pedidos.add(pedido); }	
 	
 	public void crearPedidoSala(Clientes cliente, Mesa mesa) {}
