@@ -27,7 +27,7 @@ public class Clientes {
         return nombre;
     }
 
-    public int getICliente() {
+    public int getIDCliente() {
         return idCliente;
     }
 
