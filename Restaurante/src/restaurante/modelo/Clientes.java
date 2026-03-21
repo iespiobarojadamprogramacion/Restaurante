@@ -10,6 +10,7 @@ public class Clientes {
     private String correo;
     private ArrayList <Reservas> reservas;
 
+    //Constructor
     public Clientes(String nombre, String telefono, String correo) {
         idCliente = contador++; 
         this.nombre= nombre;
@@ -17,6 +18,7 @@ public class Clientes {
         this.correo = correo;
     }
 
+    //Metodo para actualizar los datos del cliente
     public void actualizarContacto(String nombre, String telefono, String correo) {
         this.nombre = nombre;
         this.telefono = telefono;

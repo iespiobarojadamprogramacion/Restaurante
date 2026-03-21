@@ -31,6 +31,11 @@ public class Mesa {
             estado = EstadoMesa.Ocupada;
         }
     }
+    
+    //Método para liberar la mesa
+    public void liberar() {
+    	estado = EstadoMesa.Libre;
+    }
 
     // Getters
     public int getIdentificador() {
