@@ -40,4 +40,8 @@ public class Clientes {
     public String getCorreo() {
         return correo;
     }
+
+	public ArrayList<Reservas> getReservas() {
+		return reservas;
+	}
 }

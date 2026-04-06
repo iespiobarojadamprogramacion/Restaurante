@@ -1,28 +1,42 @@
 package restaurante.modelo;
 public class Plato {
+	private static int indice = 0;
     private int idPlato;
     private String nombre;
     private TipoPlato tipo;
     private double precioUnitario;
     private boolean disponibilidad;
+    
     // Constructor
-    public Plato(int idPlato, String nombre, TipoPlato tipo, double precioUnitario, boolean disponibilidad) {
-        this.idPlato = idPlato;
+    public Plato(String nombre, TipoPlato tipo, double precioUnitario) {
+        idPlato = indice++;
         this.nombre = nombre;
         this.tipo = tipo;
         this.precioUnitario = precioUnitario;
-        this.disponibilidad = disponibilidad;
+        disponibilidad = true;
     }
+    
     public void cambiarDisponibilidad(boolean disponible) {
-        this.disponibilidad = disponible;
+        disponibilidad = disponible;
     }
+    
     public void actualizarPrecio(double nuevoPrecio) {
-        this.precioUnitario = nuevoPrecio;
+        precioUnitario = nuevoPrecio;
     }
-    public double getPrecioUnitario() {
+    
+    public int getIdPlato() {
+		return idPlato;
+	}
+
+	public double getPrecioUnitario() {
         return precioUnitario;
     }
+    
     public String getNombre() {
         return nombre;
     }
+
+	public boolean isDisponibilidad() {
+		return disponibilidad;
+	}
 }

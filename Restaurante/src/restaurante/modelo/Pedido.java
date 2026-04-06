@@ -11,6 +11,8 @@ public abstract class Pedido {
 	private ArrayList <LineaPedido> lineasPedido;
 	private Clientes cliente;
 	
+	
+	//Constructor
 	public Pedido(String fechaPedido, Clientes cliente) {
 		idPedido = indice++;
 		this.fechaPedido = fechaPedido;
@@ -38,11 +40,15 @@ public abstract class Pedido {
 		return estado;
 	}
 	
+	public ArrayList<LineaPedido> getLineasPedido() {
+		return lineasPedido;
+	}
+
 	public double calcularImporte() {
 		int suma = 0;
 		
 		for (LineaPedido li : lineasPedido) {
-			suma += (li.getPecioUnitario * li.getCantidad);
+			suma += li.calcularSubtotal();
 		}
 		
 		return suma;

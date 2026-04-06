@@ -113,6 +113,66 @@ public class Principal {
 			case 4:
 				sistemaGestion.listarReservas();
 				break;
+				
+			case 5:
+				System.out.println("Introduce el nombre del cliente");
+				nombre = sc.nextLine();
+				
+				if (sistemaGestion.buscarCliente(nombre) == null) {
+					System.out.println("Cliente no encontrado");
+					break;
+				}
+				
+				System.out.println("Introduce la fecha de la reserva");
+				fecha = sc.nextLine();
+				
+				sistemaGestion.crearPedidoSala(sistemaGestion.buscarCliente(nombre), fecha);
+				break;
+				
+			case 6:
+				String direccion = "";
+				
+				System.out.println("Introduce el nombre del cliente");
+				nombre = sc.nextLine();
+				
+				if (sistemaGestion.buscarCliente(nombre) == null) {
+					System.out.println("Cliente no encontrado");
+					break;
+				}
+				
+				System.out.println("Introduce la fecha de la reserva");
+				fecha = sc.nextLine();
+				
+				System.out.println("¿Se recoge en el local?");
+				boolean recogidaEnLocal = sc.nextLine().equalsIgnoreCase("si")? true : false;
+				
+				if (!recogidaEnLocal) {
+					System.out.println("Indique la direcceión de entrega");
+					direccion = sc.nextLine();
+				}
+				
+				sistemaGestion.crearPedidoLlevar(fecha, recogidaEnLocal, direccion, sistemaGestion.buscarCliente(nombre));
+				break;
+				
+			case 7:
+				System.out.println("Introduzca el id del plato");
+				int idPlato = sc.nextInt();
+				sc.nextLine();
+				
+				Plato plato = sistemaGestion.buscarPlato(idPlato);
+					
+				System.out.println("Introduce la cantidad");
+				int cantidad = sc.nextInt();
+				sc.nextLine();
+				
+				System.out.println("Escriba notas: ");
+				String notas = sc.nextLine();
+				
+				sistemaGestion.agregarPlatoAPedido(idPlato, plato, cantidad, notas);
+				break;
+				
+			case 8:
+				
 
 			case 0:
 				System.out.println("ADIOS");
@@ -131,7 +191,9 @@ public class Principal {
 
 	private static void menuPrincipal() {
 		System.out.println("Bienvenido al restaurante DAM1" + "\n 1. Reservar" + "\n 2. Confirmar reserva"
-				+ "\n 3. Cancelar reserva" + "\n 4. Mostrar reservas" + "\n 0. SALIR");
+				+ "\n 3. Cancelar reserva" + "\n 4. Mostrar reservas" + "\n 5. Crear pedido en sala" 
+				+ "\n 6. Crear pedido para llevar" + "\n 7. Agregar plato a pedido" + "\n 8. Cerrar un pedido" 
+				+ "\n 9. Listar platos disponibles" +"\n 0. SALIR");
 	}
 
 	private static int comprobarNumero(String str) {
