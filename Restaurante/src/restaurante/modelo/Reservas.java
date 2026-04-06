@@ -51,6 +51,10 @@ public class Reservas {
 		return fechaReserva;
 	}
 
+	public Clientes getCliente() {
+		return cliente;
+	}
+
 	public String toString() {
 		return "ID Reserva: " + idReserva + "\n Fecha: " + fechaReserva + "\n Hora: " + horaReserva + "\n Mesa: " + mesa.getIdentificador() + "\n Cliente: " + cliente.obtenerNombre()
 				+ "\n Estado: " + estado + "\n";

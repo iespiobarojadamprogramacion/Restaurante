@@ -16,6 +16,7 @@ public class Clientes {
         this.nombre= nombre;
         this.telefono = telefono;
         this.correo = correo;
+        this.reservas = new ArrayList<>();
     }
 
     //Metodo para actualizar los datos del cliente
@@ -44,4 +45,10 @@ public class Clientes {
 	public ArrayList<Reservas> getReservas() {
 		return reservas;
 	}
+	
+	public void addReserva(Reservas reserva) {
+	    reservas.add(reserva);
+	}
+
+
 }

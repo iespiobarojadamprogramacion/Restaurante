@@ -18,6 +18,7 @@ public abstract class Pedido {
 		this.fechaPedido = fechaPedido;
 		this.cliente = cliente;
 		estado = EstadoPedido.Pendiente;
+		lineasPedido = new ArrayList<>();
 	}
 	
 	public int getIdPedido() {

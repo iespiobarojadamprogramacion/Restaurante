@@ -76,6 +76,7 @@ public class SistemaGestion {
 	public void crearReserva(Reservas reserva) {
 		reserva.getMesa().reservar(); // Es necesario reservar la mesa, es decir cambiar el estado de la mesa
 		reservas.add(reserva);
+		reserva.getCliente().addReserva(reserva);
 	}
 
 	// Buscar reserva por ID
@@ -179,6 +180,10 @@ public class SistemaGestion {
 		
 		return null;
 
+	}
+	
+	public void añadirPlato(String nombre, TipoPlato tipo, double precioUnitario) {
+		menu.add(new Plato(nombre, tipo, precioUnitario));
 	}
 
 }
