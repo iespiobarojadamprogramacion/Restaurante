@@ -9,6 +9,7 @@ public class Principal {
 
 	private static String fecha;
 	private static int idReserva;
+	private static int idPedido;
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -113,8 +114,103 @@ public class Principal {
 			case 4:
 				sistemaGestion.listarReservas();
 				break;
+				
+			case 5:
+				System.out.println("Introduce el nombre del cliente");
+				nombre = sc.nextLine();
+				
+				if (sistemaGestion.buscarCliente(nombre) == null) {
+					System.out.println("Cliente no encontrado");
+					break;
+				}
+				
+				System.out.println("Introduce la fecha de la reserva");
+				fecha = sc.nextLine();
+				
+				sistemaGestion.crearPedidoSala(sistemaGestion.buscarCliente(nombre), fecha);
+				break;
+				
+			case 6:
+				String direccion = "";
+				
+				System.out.println("Introduce el nombre del cliente");
+				nombre = sc.nextLine();
+				
+				if (sistemaGestion.buscarCliente(nombre) == null) {
+					System.out.println("Cliente no encontrado");
+					break;
+				}
+				
+				System.out.println("Introduce la fecha de la reserva");
+				fecha = sc.nextLine();
+				
+				System.out.println("¿Se recoge en el local?");
+				boolean recogidaEnLocal = sc.nextLine().equalsIgnoreCase("si")? true : false;
+				
+				if (!recogidaEnLocal) {
+					System.out.println("Indique la direcceión de entrega");
+					direccion = sc.nextLine();
+				}
+				
+				sistemaGestion.crearPedidoLlevar(fecha, recogidaEnLocal, direccion, sistemaGestion.buscarCliente(nombre));
+				break;
+				
+			case 7:
+				System.out.println("Introduzca el id del pedido");
+				idPedido = sc.nextInt();
+				sc.nextLine();
+				
+				System.out.println("Introduzca el id del plato");
+				int idPlato = sc.nextInt();
+				sc.nextLine();
+				
+				Plato plato = sistemaGestion.buscarPlato(idPlato);
+					
+				System.out.println("Introduce la cantidad");
+				int cantidad = sc.nextInt();
+				sc.nextLine();
+				
+				System.out.println("Escriba notas: ");
+				String notas = sc.nextLine();
+				
+				sistemaGestion.agregarPlatoAPedido(idPedido, plato, cantidad, notas);
+				break;
+				
+			case 8:
+				System.out.println("Introduce el id del pedido a cerrar");
+				idPedido = sc.nextInt();
+				sc.nextLine();
+				
+				sistemaGestion.cerrarPedido(idPedido);
+				break;
+				
+			case 9:
+				sistemaGestion.listarPlatosDisponibles();
+				break;
+				
+			case 10:
+				TipoPlato tipo = null;
+				
+				System.out.println("Introduce el nombre del plato");
+				nombre = sc.nextLine();
+				
+				System.out.println("Introduce el tipo de plato");
+				try {
+					tipo = TipoPlato.valueOf(sc.nextLine());
+				} catch (IllegalArgumentException e) {
+					tipo = null;
+				}
+				
+				if (tipo == null) break;
+				
+				System.out.println("Introduce el precio unitario del plato");
+				double precio = sc.nextDouble();
+				sc.nextLine();
+				
+				sistemaGestion.añadirPlato(nombre, tipo, precio);
+				break;
 
-			case 0:
+			case -1:
 				System.out.println("ADIOS");
 				cerrar = true;
 				break;
@@ -131,7 +227,9 @@ public class Principal {
 
 	private static void menuPrincipal() {
 		System.out.println("Bienvenido al restaurante DAM1" + "\n 1. Reservar" + "\n 2. Confirmar reserva"
-				+ "\n 3. Cancelar reserva" + "\n 4. Mostrar reservas" + "\n 0. SALIR");
+				+ "\n 3. Cancelar reserva" + "\n 4. Mostrar reservas" + "\n 5. Crear pedido en sala" 
+				+ "\n 6. Crear pedido para llevar" + "\n 7. Agregar plato a pedido" + "\n 8. Cerrar un pedido" 
+				+ "\n 9. Listar platos disponibles" + "\n 10. Añadir plato" +"\n -1. SALIR");
 	}
 
 	private static int comprobarNumero(String str) {

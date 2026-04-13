@@ -13,13 +13,22 @@ public abstract class Pedido {
 	private ArrayList <LineaPedido> lineasPedido;
 	private Clientes cliente;
 	
+<<<<<<< HEAD
 //CONSTRUCTOR - Añadi el ArrayList de lineasPedido
+=======
+	
+	//Constructor
+>>>>>>> main
 	public Pedido(String fechaPedido, Clientes cliente) {
 		idPedido = indice++;
 		this.fechaPedido = fechaPedido;
 		this.cliente = cliente;
 		estado = EstadoPedido.Pendiente;
+<<<<<<< HEAD
 		this.lineasPedido = new ArrayList<>();  // ← IMPORTANTE: inicializar
+=======
+		lineasPedido = new ArrayList<>();
+>>>>>>> main
 	}
 //METODOS GETTERS Y SETTERS
 	public int getIdPedido() {
@@ -42,6 +51,7 @@ public abstract class Pedido {
 		return estado;
 	}
 	
+<<<<<<< HEAD
 	
 // GETTER FALTANTE (necesario para SistemaGestion k)
     public ArrayList<LineaPedido> getLineasPedido() {
@@ -59,11 +69,21 @@ public abstract class Pedido {
         
 	
  // MÉTODO CORREGIDO k
+=======
+	public ArrayList<LineaPedido> getLineasPedido() {
+		return lineasPedido;
+	}
+
+>>>>>>> main
 	public double calcularImporte() {
 		int suma = 0;
 		
 		for (LineaPedido li : lineasPedido) {
+<<<<<<< HEAD
 			suma += li.getPrecioUnitario() * li.getCantidad();  // ← paréntesis y método corregido k
+=======
+			suma += li.calcularSubtotal();
+>>>>>>> main
 		}
 		
 		return suma;
