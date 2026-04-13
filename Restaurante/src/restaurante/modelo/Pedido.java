@@ -3,6 +3,8 @@ package restaurante.modelo;
 import java.util.ArrayList;
 
 public abstract class Pedido {
+	
+//ATRIBUTOS
 	private static int indice = 1;
 	private int idPedido;
 	private String fechaPedido;
@@ -11,13 +13,15 @@ public abstract class Pedido {
 	private ArrayList <LineaPedido> lineasPedido;
 	private Clientes cliente;
 	
+//CONSTRUCTOR - Añadi el ArrayList de lineasPedido
 	public Pedido(String fechaPedido, Clientes cliente) {
 		idPedido = indice++;
 		this.fechaPedido = fechaPedido;
 		this.cliente = cliente;
 		estado = EstadoPedido.Pendiente;
+		this.lineasPedido = new ArrayList<>();  // ← IMPORTANTE: inicializar
 	}
-	
+//METODOS GETTERS Y SETTERS
 	public int getIdPedido() {
 		return idPedido;
 	}
@@ -38,16 +42,36 @@ public abstract class Pedido {
 		return estado;
 	}
 	
+	
+// GETTER FALTANTE (necesario para SistemaGestion k)
+    public ArrayList<LineaPedido> getLineasPedido() {
+        return lineasPedido;
+    }
+	
+    
+    
+    
+ // Método para obtener el siguiente ID de línea (útil para agregar platos k)
+    public int getSiguienteIdLinea() {
+        return lineasPedido.size() + 1;
+    }  
+        
+        
+	
+ // MÉTODO CORREGIDO k
 	public double calcularImporte() {
 		int suma = 0;
 		
 		for (LineaPedido li : lineasPedido) {
-			suma += (li.getPecioUnitario * li.getCantidad);
+			suma += li.getPrecioUnitario() * li.getCantidad();  // ← paréntesis y método corregido k
 		}
 		
 		return suma;
 	}
 	
+	
+	
+//METODOS DE LA PROPIA CLASE 	
 	public void cambiarEstado(EstadoPedido nuevoEstado) {
 		estado = nuevoEstado;
 	}

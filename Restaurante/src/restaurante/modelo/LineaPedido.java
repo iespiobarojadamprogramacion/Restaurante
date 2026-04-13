@@ -9,8 +9,9 @@ public class LineaPedido {
    private Pedido pedido;
  
    
-   // Constructor
-   public LineaPedido(int idLinea, int cantidad, Plato plato, String notas) {
+  
+// Constructor - Añadi el parametro Pedido pedido
+   public LineaPedido(int idLinea, int cantidad, Plato plato, String notas, Pedido pedido) {
        this.idLinea = idLinea;
        this.cantidad = cantidad;
        this.plato = plato;
@@ -18,6 +19,32 @@ public class LineaPedido {
        this.notas = notas;
        this.pedido = pedido;
    }
+ 
+
+   
+ //IMPLEMENTADO POR K PARA QUE FUNCIONE LA APP- MODIFIQUE CONSTRUCTOR Y AÑADI METODOS GETTERS
+
+   
+   //AÑADI -  Constructor alternativo sin notas
+   public LineaPedido(int idLinea, int cantidad, Plato plato, Pedido pedido) {
+       this(idLinea, cantidad, plato, "", pedido);
+   }
+   
+   // Getters faltantes
+   public int getIdLinea() {
+       return idLinea;
+   }
+   
+   public String getNotas() {
+       return notas;
+   }
+   
+   public Pedido getPedido() {
+       return pedido;
+   }
+   
+   
+//YA ESTABA IMPLEMENTADO POR EL COMPIS
    public double calcularSubtotal() {
        return this.precioUnitario * this.cantidad;
    }

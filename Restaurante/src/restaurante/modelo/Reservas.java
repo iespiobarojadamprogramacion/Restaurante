@@ -10,7 +10,7 @@ public class Reservas {
 	private Mesa mesa;
 	private Clientes cliente;
 
-	//Constructor
+//Constructor
 	public Reservas(String fechaReserva, String horaReserva, int comensales, Mesa mesa,
 			Clientes cliente) {
 		idReserva = contador++;
@@ -22,19 +22,19 @@ public class Reservas {
 		this.cliente = cliente;
 	}
 
-	//Metodo para confirmar reservas. Si se ha cancelado, no se puede confirmar
+//Metodo para confirmar reservas. Si se ha cancelado, no se puede confirmar
 	public void confirmar() {
 		if (estado == EstadoReservas.Pendiente) estado = EstadoReservas.Confirmada;
 		else System.out.println("No se puede confirmar una reserva cancelada");
 	}
 
-	//Metodo para cancelar reservas. Si se ha confirmado, no se puede cancelar
+//Metodo para cancelar reservas. Si se ha confirmado, no se puede cancelar
 	public void cancelar() {
 		if (estado == EstadoReservas.Pendiente) estado = EstadoReservas.Cancelada;
 		else System.out.println("No se puede cancelar una reserva confirmada");
 	}
 
-	//Metodo para confirmar si una hora pertenece a una fecha
+//Metodo para confirmar si una hora pertenece a una fecha
 	public boolean esParaFecha(String fecha) {
 		return this.fechaReserva.equals(fecha);
 	}
