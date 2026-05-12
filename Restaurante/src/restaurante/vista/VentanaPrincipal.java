@@ -2,23 +2,14 @@ package restaurante.vista;
 
 import java.awt.EventQueue;
 
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import java.awt.GridLayout;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import java.awt.Font;
-import java.awt.GridBagLayout;
-import java.awt.Color;
-import java.awt.Dimension;
+
+import java.awt.*;
+import restaurante.modelo.SistemaGestion;
 
 public class VentanaPrincipal extends JFrame {
+	private SistemaGestion sistemaGestion;
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -43,6 +34,8 @@ public class VentanaPrincipal extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaPrincipal() {
+		this.sistemaGestion = new SistemaGestion();
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setMinimumSize(new Dimension(600, 400));
@@ -87,12 +80,20 @@ public class VentanaPrincipal extends JFrame {
 
 		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Crear pedido en sala");
 		mnNewMenu_1.add(mntmNewMenuItem_4);
+		mntmNewMenuItem_4.addActionListener(e -> {
+			CrearPedidoSalaDialog dialog = new CrearPedidoSalaDialog(this, sistemaGestion);
+			dialog.setVisible(true);
+		});
 
 		JMenuItem mntmNewMenuItem_5 = new JMenuItem("Crear pedido para llevar");
 		mnNewMenu_1.add(mntmNewMenuItem_5);
 
 		JMenuItem mntmNewMenuItem_6 = new JMenuItem("Agregar plato o pedidio");
 		mnNewMenu_1.add(mntmNewMenuItem_6);
+		mntmNewMenuItem_6.addActionListener(e -> {
+			AgregarPlatoAPedidoDialog dialog = new AgregarPlatoAPedidoDialog(this, sistemaGestion);
+			dialog.setVisible(true);
+		});
 
 		JMenuItem mntmNewMenuItem_7 = new JMenuItem("Cerrar pedido");
 		mnNewMenu_1.add(mntmNewMenuItem_7);

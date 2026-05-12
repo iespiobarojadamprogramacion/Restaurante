@@ -69,7 +69,7 @@ public abstract class Pedido {
 
 	@Override
 	public String toString() {
-		return "Pedido [idPedido=" + idPedido + ", fechaPedido=" + fechaPedido + ", estado=" + estado + "]";
+		return "Pedido #" + idPedido + " - " + cliente.obtenerNombre();
 	}
 	
 	
