@@ -50,5 +50,9 @@ public class Clientes {
 	    reservas.add(reserva);
 	}
 
+	@Override
+	public String toString() {
+		return obtenerNombre() + " (" + getTelefono() + ")";
+	}
 
 }

@@ -185,5 +185,9 @@ public class SistemaGestion {
 	public void añadirPlato(String nombre, TipoPlato tipo, double precioUnitario) {
 		menu.add(new Plato(nombre, tipo, precioUnitario));
 	}
+	
+	public ArrayList<Clientes> getClientes() {
+		return clientes;
+	}
 
 }

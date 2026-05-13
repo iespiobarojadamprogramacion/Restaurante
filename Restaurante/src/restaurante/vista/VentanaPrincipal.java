@@ -1,27 +1,15 @@
 package restaurante.vista;
 
-import java.awt.EventQueue;
-
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import java.awt.*;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import java.awt.GridLayout;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import java.awt.Font;
-import java.awt.GridBagLayout;
-import java.awt.Color;
-import java.awt.Dimension;
+import restaurante.modelo.*;
 
 public class VentanaPrincipal extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private SistemaGestion sistemaGestion;
 
 	/**
 	 * Launch the application.
@@ -43,6 +31,8 @@ public class VentanaPrincipal extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaPrincipal() {
+		this.sistemaGestion = new SistemaGestion();
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setMinimumSize(new Dimension(600, 400));
@@ -72,6 +62,10 @@ public class VentanaPrincipal extends JFrame {
 
 		JMenuItem mntmNewMenuItem = new JMenuItem("Reservar");
 		mnNewMenu.add(mntmNewMenuItem);
+		mntmNewMenuItem.addActionListener(e -> {
+			CrearReservaDialog dialog = new CrearReservaDialog(this, sistemaGestion);
+			dialog.setVisible(true);
+		});
 
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Confirmar reserva");
 		mnNewMenu.add(mntmNewMenuItem_1);
