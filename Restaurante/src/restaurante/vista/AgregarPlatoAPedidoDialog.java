@@ -2,6 +2,8 @@ package restaurante.vista;
 
 import javax.swing.*;
 import java.awt.*;
+
+import restaurante.controlador.ControladorAgregarPlato;
 import restaurante.modelo.*;
 
 public class AgregarPlatoAPedidoDialog extends JDialog {
@@ -132,20 +134,8 @@ public class AgregarPlatoAPedidoDialog extends JDialog {
 				getRootPane().setDefaultButton(okButton);
 
 				okButton.addActionListener(e -> {
-					Pedido pedido = (Pedido) comboPedidos.getSelectedItem();
-					Plato plato = (Plato) comboPlatos.getSelectedItem();
-					int cantidad = Integer.parseInt(txtCantidad.getText());
-					String notas = txtNotas.getText();
-
-					if (pedido == null || plato == null) {
-						JOptionPane.showMessageDialog(this, "Debe seleccionar un pedido y un plato");
-						return;
-					}
-
-					sistemaGestion.agregarPlatoAPedido(pedido.getIdPedido(), plato, cantidad, notas);
-
-					JOptionPane.showMessageDialog(this, "Plato agregado correctamente");
-					dispose();
+					ControladorAgregarPlato ctrl = new ControladorAgregarPlato(sistemaGestion, this);
+					ctrl.agregarPlato();
 				});
 
 				{
@@ -157,5 +147,25 @@ public class AgregarPlatoAPedidoDialog extends JDialog {
 			}
 		}
 
+	}
+	
+	public Pedido getPedidoSeleccionado() {
+		return (Pedido) comboPedidos.getSelectedItem();
+	}
+	
+	public Plato getPlatoSeleccionado() {
+	    return (Plato) comboPlatos.getSelectedItem();
+	}
+
+	public int getCantidad() {
+	    return Integer.parseInt(txtCantidad.getText());
+	}
+
+	public String getNotas() {
+	    return txtNotas.getText();
+	}
+
+	public void mostrarMensaje(String msg) {
+	    JOptionPane.showMessageDialog(this, msg);
 	}
 }
