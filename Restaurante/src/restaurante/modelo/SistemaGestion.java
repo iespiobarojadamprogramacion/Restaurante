@@ -189,5 +189,16 @@ public class SistemaGestion {
 	public ArrayList<Clientes> getClientes() {
 		return clientes;
 	}
+	
+	public ArrayList<Reservas> getReservasPendientes(){
+		ArrayList<Reservas> pendientes = new ArrayList<>();
+		for (Reservas r : reservas) {
+			if (r.getEstado() == EstadoReservas.Pendiente) {
+				pendientes.add(r);
+			}
+		}
+		
+		return pendientes;
+	}
 
 }

@@ -69,9 +69,17 @@ public class VentanaPrincipal extends JFrame {
 
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Confirmar reserva");
 		mnNewMenu.add(mntmNewMenuItem_1);
+		mntmNewMenuItem_1.addActionListener(e -> {
+			ConfirmarReservaDialog dialog = new ConfirmarReservaDialog(this, sistemaGestion);
+			dialog.setVisible(true);
+		});
 
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Cancelar reserva");
 		mnNewMenu.add(mntmNewMenuItem_2);
+		mntmNewMenuItem_2.addActionListener(e -> {
+			CancelarReservaDialog dialog = new CancelarReservaDialog(this, sistemaGestion);
+			dialog.setVisible(true);
+		});
 
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Mostrar reservas");
 		mnNewMenu.add(mntmNewMenuItem_3);

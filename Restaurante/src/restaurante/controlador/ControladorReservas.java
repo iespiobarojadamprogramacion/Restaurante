@@ -24,36 +24,36 @@ public class ControladorReservas {
 		try {
 			comensales = vista.getComensale();
 		} catch (NumberFormatException e) {
-			vista.mostrarError("El número de coemsanles debe ser un número entero");
+			vista.mostrarMensaje("El número de coemsanles debe ser un número entero");
 			return;
 		}
 		
 		if (cliente == null) {
-			vista.mostrarError("Debe seleccionar un cliente");
+			vista.mostrarMensaje("Debe seleccionar un cliente");
 			return;
 		}
 		
 		if (!ControladorFechas.esFechaValida(fecha)) {
-			vista.mostrarError("La fecha no es valida");
+			vista.mostrarMensaje("La fecha no es valida");
 			return;
 		}
 		
 		if (!esHoraValida(hora)) {
-			vista.mostrarError("La hora no es válida");
+			vista.mostrarMensaje("La hora no es válida");
 			return;
 		}
 		
 		Mesa mesa = sistemaGestion.buscarMesa(comensales, fecha, hora);
 		
 		if (mesa == null) {
-			vista.mostrarError("No hay mesas disponibles para esa fecha y hora");
+			vista.mostrarMensaje("No hay mesas disponibles para esa fecha y hora");
 			return;
 		}
 		
 		Reservas reserva = new Reservas(fecha, hora, comensales, mesa, cliente);
 		sistemaGestion.crearReserva(reserva);
 		
-		vista.mostrarError("Reserva creada correctamente");
+		vista.mostrarMensaje("Reserva creada correctamente");
 		vista.dispose();
 	}
 	

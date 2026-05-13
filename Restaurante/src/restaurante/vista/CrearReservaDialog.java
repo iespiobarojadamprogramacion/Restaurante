@@ -184,7 +184,7 @@ public class CrearReservaDialog extends JDialog {
 		return Integer.parseInt(txtComensales.getText());
 	}
 	
-	public void mostrarError (String str) {
+	public void mostrarMensaje (String str) {
 		JOptionPane.showMessageDialog(this, str);
 	}
 
