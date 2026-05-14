@@ -6,7 +6,6 @@ import javax.swing.border.EmptyBorder;
 import restaurante.modelo.*;
 
 public class VentanaPrincipal extends JFrame {
-
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private SistemaGestion sistemaGestion;
@@ -100,7 +99,7 @@ public class VentanaPrincipal extends JFrame {
 		JMenuItem mntmNewMenuItem_6 = new JMenuItem("Agregar plato o pedidio");
 		mnNewMenu_1.add(mntmNewMenuItem_6);
 		mntmNewMenuItem_6.addActionListener(e -> {
-			AgregarPlatoPedidoDialog dialog = new AgregarPlatoPedidoDialog(this, sistemaGestion);
+			AgregarPlatoAPedidoDialog dialog = new AgregarPlatoAPedidoDialog(this, sistemaGestion);
 			dialog.setVisible(true);
 		});
 

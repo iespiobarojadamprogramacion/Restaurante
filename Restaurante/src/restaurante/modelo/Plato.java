@@ -39,4 +39,9 @@ public class Plato {
 	public boolean isDisponibilidad() {
 		return disponibilidad;
 	}
+	
+	@Override
+	public String toString() {
+		return idPlato + " - " + nombre + " (" + tipo + ")";
+	}
 }

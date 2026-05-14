@@ -186,8 +186,41 @@ public class SistemaGestion {
 		menu.add(new Plato(nombre, tipo, precioUnitario));
 	}
 	
+	public ArrayList<Pedido> getPedidosAbiertos() {
+		ArrayList<Pedido> abiertos = new ArrayList<>();
+		for (Pedido p : pedidos) {
+			if (p.getEstado() == EstadoPedido.Pendiente) {
+				abiertos.add(p);
+			}
+		}
+		
+		return abiertos;
+	}
+	
+	public ArrayList<Plato> getPlatosDisponibles() {
+		ArrayList<Plato> disponibles = new ArrayList<>();
+		for (Plato p : menu) {
+			if (p.isDisponibilidad()) {
+				disponibles.add(p);
+			}
+		}
+		
+		return disponibles;
+	}
+	
 	public ArrayList<Clientes> getClientes() {
 		return clientes;
+	}
+	
+	public ArrayList<Clientes> getClientesConfirmados() {
+		ArrayList<Clientes> confirmados = new ArrayList<>();
+		for (Reservas r : reservas) {
+			if (r.getEstado() == EstadoReservas.Confirmada) {
+				confirmados.add(r.getCliente());
+			}
+		}
+		
+		return confirmados;
 	}
 	
 	public ArrayList<Reservas> getReservasPendientes(){
