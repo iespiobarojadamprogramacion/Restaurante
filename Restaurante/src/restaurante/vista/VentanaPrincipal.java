@@ -89,12 +89,20 @@ public class VentanaPrincipal extends JFrame {
 
 		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Crear pedido en sala");
 		mnNewMenu_1.add(mntmNewMenuItem_4);
+		mntmNewMenuItem_4.addActionListener(e -> {
+			CrearPedidoSalaDialog dialog = new CrearPedidoSalaDialog(this, sistemaGestion);
+			dialog.setVisible(true);
+		});
 
 		JMenuItem mntmNewMenuItem_5 = new JMenuItem("Crear pedido para llevar");
 		mnNewMenu_1.add(mntmNewMenuItem_5);
 
 		JMenuItem mntmNewMenuItem_6 = new JMenuItem("Agregar plato o pedidio");
 		mnNewMenu_1.add(mntmNewMenuItem_6);
+		mntmNewMenuItem_6.addActionListener(e -> {
+			AgregarPlatoPedidoDialog dialog = new AgregarPlatoPedidoDialog(this, sistemaGestion);
+			dialog.setVisible(true);
+		});
 
 		JMenuItem mntmNewMenuItem_7 = new JMenuItem("Cerrar pedido");
 		mnNewMenu_1.add(mntmNewMenuItem_7);
