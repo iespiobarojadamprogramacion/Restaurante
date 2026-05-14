@@ -38,6 +38,10 @@ public class Reservas {
 	public boolean esParaFecha(String fecha) {
 		return this.fechaReserva.equals(fecha);
 	}
+	
+	public EstadoReservas getEstado() {
+		return estado;
+	}
 
 	public Mesa getMesa() {
 		return mesa;
@@ -56,7 +60,6 @@ public class Reservas {
 	}
 
 	public String toString() {
-		return "ID Reserva: " + idReserva + "\n Fecha: " + fechaReserva + "\n Hora: " + horaReserva + "\n Mesa: " + mesa.getIdentificador() + "\n Cliente: " + cliente.obtenerNombre()
-				+ "\n Estado: " + estado + "\n";
+		return idReserva + " " + cliente + " - " + fechaReserva + " - " + horaReserva;
 	}
 }

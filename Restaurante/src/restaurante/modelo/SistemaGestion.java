@@ -185,5 +185,20 @@ public class SistemaGestion {
 	public void añadirPlato(String nombre, TipoPlato tipo, double precioUnitario) {
 		menu.add(new Plato(nombre, tipo, precioUnitario));
 	}
+	
+	public ArrayList<Clientes> getClientes() {
+		return clientes;
+	}
+	
+	public ArrayList<Reservas> getReservasPendientes(){
+		ArrayList<Reservas> pendientes = new ArrayList<>();
+		for (Reservas r : reservas) {
+			if (r.getEstado() == EstadoReservas.Pendiente) {
+				pendientes.add(r);
+			}
+		}
+		
+		return pendientes;
+	}
 
 }
