@@ -1,18 +1,16 @@
 package restaurante.vista;
 
-import java.awt.EventQueue;
-
+import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-
-import java.awt.*;
-import restaurante.modelo.SistemaGestion;
+import restaurante.modelo.*;
 
 public class VentanaPrincipal extends JFrame {
 	private SistemaGestion sistemaGestion;
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private SistemaGestion sistemaGestion;
 
 	/**
 	 * Launch the application.
@@ -65,12 +63,24 @@ public class VentanaPrincipal extends JFrame {
 
 		JMenuItem mntmNewMenuItem = new JMenuItem("Reservar");
 		mnNewMenu.add(mntmNewMenuItem);
+		mntmNewMenuItem.addActionListener(e -> {
+			CrearReservaDialog dialog = new CrearReservaDialog(this, sistemaGestion);
+			dialog.setVisible(true);
+		});
 
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Confirmar reserva");
 		mnNewMenu.add(mntmNewMenuItem_1);
+		mntmNewMenuItem_1.addActionListener(e -> {
+			ConfirmarReservaDialog dialog = new ConfirmarReservaDialog(this, sistemaGestion);
+			dialog.setVisible(true);
+		});
 
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Cancelar reserva");
 		mnNewMenu.add(mntmNewMenuItem_2);
+		mntmNewMenuItem_2.addActionListener(e -> {
+			CancelarReservaDialog dialog = new CancelarReservaDialog(this, sistemaGestion);
+			dialog.setVisible(true);
+		});
 
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Mostrar reservas");
 		mnNewMenu.add(mntmNewMenuItem_3);
@@ -91,7 +101,7 @@ public class VentanaPrincipal extends JFrame {
 		JMenuItem mntmNewMenuItem_6 = new JMenuItem("Agregar plato o pedidio");
 		mnNewMenu_1.add(mntmNewMenuItem_6);
 		mntmNewMenuItem_6.addActionListener(e -> {
-			AgregarPlatoAPedidoDialog dialog = new AgregarPlatoAPedidoDialog(this, sistemaGestion);
+			AgregarPlatoPedidoDialog dialog = new AgregarPlatoPedidoDialog(this, sistemaGestion);
 			dialog.setVisible(true);
 		});
 
