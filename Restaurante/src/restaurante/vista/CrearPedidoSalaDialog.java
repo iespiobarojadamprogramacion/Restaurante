@@ -1,19 +1,18 @@
 package restaurante.vista;
 
-import java.awt.*;
-import java.text.ParseException;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
-
+import java.awt.*;
+import java.text.ParseException;
+import restaurante.controlador.ControladorCrearPedidoSala;
 import restaurante.modelo.*;
-import restaurante.controlador.*;
 
 public class CrearPedidoSalaDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
-	private JComboBox<Clientes> comboCliente;
+	private JComboBox<Clientes> comboClientes;
 	private JTextField txtFecha;
 	private SistemaGestion sistemaGestion;
 
@@ -21,89 +20,88 @@ public class CrearPedidoSalaDialog extends JDialog {
 		super(parent, "Crear pedido en sala", true);
 		this.sistemaGestion = sistemaGestion;
 		
-		setBounds(100, 100, 450, 200);
+		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		GridBagLayout gbl_contentPanel = new GridBagLayout();
 		gbl_contentPanel.columnWidths = new int[]{0, 0, 0, 0};
-		gbl_contentPanel.rowHeights = new int[]{0, 0, 0, 0};
+		gbl_contentPanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0};
 		gbl_contentPanel.columnWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPanel.setLayout(gbl_contentPanel);
-		
-		// Etiqueta Client
-		JLabel lblCliente = new JLabel("Cliente");
-		GridBagConstraints gbc_lblCliente = new GridBagConstraints();
-		gbc_lblCliente.insets = new Insets(0, 0, 5, 5);
-		gbc_lblCliente.gridx = 0;
-		gbc_lblCliente.gridy = 1;
-		contentPanel.add(lblCliente, gbc_lblCliente);
-		
-		//  Clientes
-		comboCliente = new JComboBox<Clientes>();
-		GridBagConstraints gbc_comboCliente = new GridBagConstraints();
-		gbc_comboCliente.insets = new Insets(0, 0, 5, 0);
-		gbc_comboCliente.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboCliente.gridx = 2;
-		gbc_comboCliente.gridy = 1;
-		contentPanel.add(comboCliente, gbc_comboCliente);
-		
-		for (Clientes c : sistemaGestion.getClientes()) {
-			comboCliente.addItem(c);
+		{
+			JLabel lblCliente = new JLabel("Cliente");
+			GridBagConstraints gbc_lblCliente = new GridBagConstraints();
+			gbc_lblCliente.insets = new Insets(0, 0, 5, 5);
+			gbc_lblCliente.gridx = 0;
+			gbc_lblCliente.gridy = 2;
+			contentPanel.add(lblCliente, gbc_lblCliente);
 		}
-		
-		//  Fecha
-		JLabel lblFecha = new JLabel("Fecha (Reserva)");
-		GridBagConstraints gbc_lblFecha = new GridBagConstraints();
-		gbc_lblFecha.insets = new Insets(0, 0, 0, 5);
-		gbc_lblFecha.gridx = 0;
-		gbc_lblFecha.gridy = 3;
-		contentPanel.add(lblFecha, gbc_lblFecha);
-		
+		{
+			comboClientes = new JComboBox();
+			for (Clientes c : sistemaGestion.getClientesConfirmados()) {
+				comboClientes.addItem(c);
+			}
+			
+			GridBagConstraints gbc_comboBoxClientes = new GridBagConstraints();
+			gbc_comboBoxClientes.insets = new Insets(0, 0, 5, 0);
+			gbc_comboBoxClientes.fill = GridBagConstraints.HORIZONTAL;
+			gbc_comboBoxClientes.gridx = 2;
+			gbc_comboBoxClientes.gridy = 2;
+			contentPanel.add(comboClientes, gbc_comboBoxClientes);
+		}
+		{
+			JLabel lblFecha = new JLabel("Fecha");
+			GridBagConstraints gbc_lblFecha = new GridBagConstraints();
+			gbc_lblFecha.insets = new Insets(0, 0, 0, 5);
+			gbc_lblFecha.gridx = 0;
+			gbc_lblFecha.gridy = 5;
+			contentPanel.add(lblFecha, gbc_lblFecha);
+		}
+		{
+			MaskFormatter mf = null;
+			try {
+			    mf = new MaskFormatter("##/##/####");
+			    mf.setPlaceholderCharacter('_');
+			} catch (ParseException e) {
+			    e.printStackTrace();
+			}
 
-		MaskFormatter mf = null;
-		try {
-		    mf = new MaskFormatter("##/##/####");
-		    mf.setPlaceholderCharacter('_');
-		} catch (ParseException e) {
-		    e.printStackTrace();
+			txtFecha = new JFormattedTextField(mf);
+			GridBagConstraints gbc_txtFecha = new GridBagConstraints();
+			gbc_txtFecha.fill = GridBagConstraints.HORIZONTAL;
+			gbc_txtFecha.gridx = 2;
+			gbc_txtFecha.gridy = 5;
+			contentPanel.add(txtFecha, gbc_txtFecha);
+			txtFecha.setColumns(10);
 		}
-		
-		txtFecha = new JFormattedTextField(mf);
-		GridBagConstraints gbc_txtFecha = new GridBagConstraints();
-		gbc_txtFecha.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtFecha.gridx = 2;
-		gbc_txtFecha.gridy = 3;
-		contentPanel.add(txtFecha, gbc_txtFecha);
-		txtFecha.setColumns(10);
-		
-		JPanel buttonPane = new JPanel();
-		buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-		getContentPane().add(buttonPane, BorderLayout.SOUTH);
-		
-		JButton okButton = new JButton("Crear Pedido");
-		okButton.setActionCommand("OK");
-		buttonPane.add(okButton);
-		getRootPane().setDefaultButton(okButton);
-		
-		// botón Crear
-		okButton.addActionListener(e -> {
-			ControladorCrearPedidoSala ctrl = new ControladorCrearPedidoSala(sistemaGestion, this);
-			ctrl.crearPedido();
-		});
-		
-		JButton cancelButton = new JButton("Cancelar");
-		cancelButton.setActionCommand("Cancel");
-		buttonPane.add(cancelButton);
-		
-		// botón Cancelar
-		cancelButton.addActionListener(e -> dispose());
+		{
+			JPanel buttonPane = new JPanel();
+			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
+			getContentPane().add(buttonPane, BorderLayout.SOUTH);
+			
+			{
+				JButton okButton = new JButton("Crear pedido");
+				okButton.setActionCommand("OK");
+				buttonPane.add(okButton);
+				getRootPane().setDefaultButton(okButton);
+				okButton.addActionListener(e -> {
+					ControladorCrearPedidoSala ctrl = new ControladorCrearPedidoSala(sistemaGestion, this);
+					ctrl.crearPedido();
+				});
+			}
+			{
+				JButton cancelButton = new JButton("Cancelar");
+				cancelButton.addActionListener(e -> dispose());
+				cancelButton.setActionCommand("Cancel");
+				buttonPane.add(cancelButton);
+			}
+		}
 	}
 	
-	// Getters 
 	public Clientes getCliente() {
-		return (Clientes) comboCliente.getSelectedItem();
+		return (Clientes) comboClientes.getSelectedItem();
 	}
 	
 	public String getFecha() {
@@ -113,4 +111,5 @@ public class CrearPedidoSalaDialog extends JDialog {
 	public void mostrarMensaje(String str) {
 		JOptionPane.showMessageDialog(this, str);
 	}
+
 }

@@ -212,6 +212,17 @@ public class SistemaGestion {
 		return clientes;
 	}
 	
+	public ArrayList<Clientes> getClientesConfirmados() {
+		ArrayList<Clientes> confirmados = new ArrayList<>();
+		for (Reservas r : reservas) {
+			if (r.getEstado() == EstadoReservas.Confirmada) {
+				confirmados.add(r.getCliente());
+			}
+		}
+		
+		return confirmados;
+	}
+	
 	public ArrayList<Reservas> getReservasPendientes(){
 		ArrayList<Reservas> pendientes = new ArrayList<>();
 		for (Reservas r : reservas) {
